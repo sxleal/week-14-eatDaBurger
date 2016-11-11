@@ -1,0 +1,32 @@
+{
+  "name": "burgerapp",
+  "version": "1.0.0",
+  "description": "lets users input names of favorite burgers",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sxleal/week-14-eatDaBurger.git"
+  },
+  "keywords": [
+    "homework",
+    "week14",
+    "Eat-Da-Burger"
+  ],
+  "author": "Sandra Leal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sxleal/week-14-eatDaBurger/issues"
+  },
+  "homepage": "https://github.com/sxleal/week-14-eatDaBurger#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^2.3.6",
+    "mysql": "^2.12.0"
+  }
+}
