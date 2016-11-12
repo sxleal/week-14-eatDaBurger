@@ -1,31 +1,32 @@
-//Dependencies
+// Include dependencies
 var express = require('express');
-var bodyparser = require('bodyparser');
-var override = require('method-override');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
+// create app 
 var app = express();
 
-//Serve static content for the app from the public directory
+// Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static(process.cwd() + '/public'));
 
-//Database setup
-var sequelize = require('sequilize'), connection;
+// use body parser for urlencodeing
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
-if (process.env.JAWSDB_URL) {
-	connection = new sequilize(process.env.JAWSDB_URL);
-} else {
-	connection = new sequilize('todo_db','root','password', {
-		host: 'localhost',
-		dialect: 'mysql',
-		port: '3306'
-	})
-}
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'));
 
-//create the model and define the schema using Sequilize
-var todo = connection.define('todo',{
-	description: {
-		type: sequilize.STRING,
-		field: 'description',
-		allowNull: false
-	}
-});
+// assign handlebars to app engine and set view engine to use handlebars
+var exphbs = require('express-handlebars');
+app.engine('handlebars', exphbs({
+    defaultLayout: 'main'
+}));
+app.set('view engine', 'handlebars');
 
+var routes = require('./controllers/burgers_controller.js');
+
+app.use('/', routes);
+
+var PORT = 3000;
+app.listen(process.env.PORT || PORT);

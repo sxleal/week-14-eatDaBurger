@@ -1,0 +1,10 @@
+CREATE DATABASE burgers_db;
+USE burgers_db;
+
+CREATE TABLE burgers(
+ID INTEGER NOT NULL AUTO_INCREMENT,
+burger_name VARCHAR(100),
+devoured TINYINT DEFAULT false,
+date TIMESTAMP,
+PRIMARY KEY (ID)
+);
