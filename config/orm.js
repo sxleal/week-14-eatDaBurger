@@ -51,7 +51,7 @@ var orm = {
 			cb(res);
 		});
 	},
-	updateOne: function(table,objColVAls,condition,cb) {
+	update: function(table,objColVals,condition,cb) {
 		        var queryString = 'UPDATE ' + table;
 
         queryString = queryString + ' SET ';
