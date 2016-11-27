@@ -5,30 +5,29 @@ var router = express.Router();
 
 var burger = require('../models/burger.js');
 
+//Get route -->Index/home
 router.get('/',function(req,res){
-	res.redirect('/burger');
+	res.redirect('/burgers');
 });
 
-router.get('/burger',function(req,res){
-	burger.all(function(data){
-		var hbsObject= {burgers: data};
-		console.log(hbsObject);
-		res.render('index',hbsObject);
+router.get('/burgers',function(req,res){
+	burger.all(function(burger_data){
+		res.render('index',{burger_data});
 	});
 });
 
-router.post('/burger/create',function(req,res){
-	burger.create(['burger_name'],[req.body.name],function(){
-		res.redirect('/burger');
+router.post('/burgers/create',function(req,res){
+	burger.create(req.body.burger_name,function(result){
+		console.log(result);
+		res.redirect('/');
 	});
 });
 
-router.put('/burger/update/:id',function(req,res){
-	var condition = 'ID = '+req.params.ID;
-	console.log('condition',condition);
+router.put('/burgers/update',function(req,res){
 
-	burger.update({'devoured': req.body.devoured},condition,function(data){
-		res.redirect('/burger');
+	burger.update(req.body.burger_id,function(result){
+		console.log(result);
+		res.redirect('/');
 	});
 });
 
